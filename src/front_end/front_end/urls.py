@@ -30,5 +30,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', login),
     url(r'^login', login),
-    
+    #url(r'^loginAdminis', loginAdminis),
+    #url(r'^registroAdmin', registroAdmin),
+    url(r'^logout', logout),
 ]

@@ -128,3 +128,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES = (BASE_DIR + '/static', )
+
+SESSION_COOKIE_AGE = 3600
+
