@@ -28,9 +28,17 @@ from front_end.views import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', login),
-    url(r'^login', login),
-    #url(r'^loginAdminis', loginAdminis),
-    #url(r'^registroAdmin', registroAdmin),
-    url(r'^logout', logout),
+    url(r'^login/', login),
+    url(r'^token/', token),
+    url(r'^funcionesAdminGlobal/', funcionesAdminGlobal),
+    url(r'^funcionesAdminServ/', funcionesAdminServ),
+    url(r'^registrarAdminServ/', registrarAdminServ),
+    url(r'^actualizarAdminServ/', actualizarAdminServ),
+    url(r'^eliminarAdminServ/', eliminarAdminServ),
+    url(r'^asociarServ/', asociarServ),
+    url(r'^lista', lista),
+    url(r'^listar_monitoreo/', listar_monitoreo),
+#    url(r'^registroAdmin', registroAdmin),
+#    url(r'^$', ambos),
+    url(r'^logout/', logout),
 ]

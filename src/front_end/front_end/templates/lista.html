@@ -1,13 +1,19 @@
 {% extends 'base.html' %}
 
-{% block titulo %}Registro{% endblock %}
+{% block titulo %}Lista{% endblock %}
 
-{% block encabezado %}Bienvenido Administrador{% endblock %}
+{% block encabezado %}Lista de Recursos{% endblock %}
 
 {% block contenido %}
+Aqui estan las pruebas de monitoreo
+<ul>
+{% for curso in cursos %}
+<li> {{ curso.Disco }} </li>
+<li> {{ curso.Memoria }} </li>
+<li> {{ curso.CPU }} </li>
 
-dummy
-
+{% endfor %}
+</ul>
 <!--
 <form>
 	<input type="hidden" value="{{ llave_aes_usr }}"name="key_1"/>
