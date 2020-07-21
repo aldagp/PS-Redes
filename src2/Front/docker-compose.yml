@@ -1,0 +1,53 @@
+version: '3'
+
+services:
+  monitoreo:
+    environment:
+     SECRET_KEY: ${SECRET_KEY}
+     DB_NAME: ${DB_NAME}
+     DB_USER: ${DB_USER}
+     DB_PASSWORD: ${DB_PASSWORD}
+     DB_HOST: ${DB_HOST}
+     DB_PORT: ${DB_PORT}
+     host: ${host}
+     user: ${user}
+     passwd: ${passwd}
+     database: ${database}
+     ADMINSERV_ACTIVO: ${ADMINSERV_ACTIVO}
+
+    build:
+      .
+    restart: always
+    container_name: front
+    volumes:
+    - ./monitoreo:/code
+    depends_on:
+      - bd
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: "250M"
+
+  bd:
+    image: mariadb:10.2.21
+    restart: always
+    environment:
+     MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+     MYSQL_DATABASE: ${MYSQL_DATABASE}
+    volumes:
+    - ./dataa_mysql:/var/lib/mysql
+    ports:
+      - 3307:3306
+
+
+  nginx:
+    image: nginx
+    restart: always
+    ports:
+      - 8000:80 #se redirige al 80 de nginx
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./monitoreo/static:/static # se mapea a static del proyect
+    depends_on:
+      - monitoreo

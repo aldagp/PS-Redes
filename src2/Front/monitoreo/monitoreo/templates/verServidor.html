@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Monitoreo de servidores{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+{% endblock %}
+
+{% block header %} 
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Servidores</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/asociarServ/">Registrar Servidor</a></li>
+      <li class="active"><a href="/funcionesAdminGlobal/">Regresar</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/logout/"><span class="glyphicon glyphicon-log-in"></span> Salir </a></li>
+    </ul>
+  </div>
+</nav>
+
+{% endblock %}
+
+{% block cuerpo %}
+
+<table class="table table-bordered">
+    <h3>Servidores</h3>
+    <tr>
+      <th>Id administrador</th>
+      <th>Nombre servidor</th>
+      <th>Direccion Ip</th>
+      <th>Usuario Api</th>
+      <th>Contraseña Api</th>
+      <th>Opciones</th>
+    </tr>
+  
+    {% for s in servidores %}
+    <tr>
+      <tr>
+        <td>{{ s.adminServ_id }}</td>
+        <td>{{ s.nombre }}</td>
+        <td>{{ s.direccionIp }}</td>
+        <td>{{ s.usuarioAPI }}</td>
+        <td>{{ s.passwordAPI }}</td>
+        <td>
+          
+          <a href="{% url 'actualizarServer' s.adminServ_id %}">Modificar</a>
+          <a href="{% url 'eliminarServ' s.adminServ_id %}">Eliminar</a>
+          <a href="/asociarServ/"></a>
+        </td>
+  
+      </tr>
+    </tr>
+    {% endfor %}
+  
+  
+  </table>
+ <!-- <a href="/asociarServ/">
+    
+    <button>Asociar servidor</button>
+  
+  </a>
+  
+  <a href="/logout/">
+    <button>Cerrar sesión</button>
+  </a>
+
+  <a href="/registrarServer/">
+    <button>Registrar Servidor</button>
+  </a>
+
+  <a href="/funcionesAdminGlobal/">
+    <button>Regresar</button>
+  </a>
+-->
+  
+{% if errores %}
+
+<div class="alert alert-danger">
+  <strong>ERROR</strong> {{ errores }}  
+</div>
+{% endif %}
+
+{% endblock %}
+{% block pie %} {{ block.super }} {% endblock %}

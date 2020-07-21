@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html lang="es-MX">
+   <head> 
+    {% block head %}
+    <title>{% block titulo %}{% endblock %}</title>
+   
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+    
+    <link rel="stylesheet" href="/static/CSS/estilos.css">
+    
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+    
+    {% endblock %}
+  </head>
+
+  
+  <body>
+    {% block header %} 
+  
+    {% endblock %}
+    
+    <div class="container-fluid text-center col-sm-12">
+    {% block cuerpo %}
+    
+     
+    {% endblock %}
+    </div>
+
+  
+  <footer class="navbar-fixed-bottom navbar-inverse navbar-dark py-4 bg-dark text-white-50">
+     <div class="container text-center">
+      {% block pie %}
+         <p style= "color: white"> Universidad Veracruzana - Redes Y Servicios de Cómputo </p>
+      {% endblock %}
+       </div>
+  </footer>
+
+
+  </body>
+</html>

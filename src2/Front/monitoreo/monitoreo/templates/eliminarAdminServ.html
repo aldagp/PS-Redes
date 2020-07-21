@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Monitoreo de servidores{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+{% endblock %}
+
+{% block header %} 
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Eliminar Administrador</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/funcionesAdminGlobal/">Regresar</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/logout/"><span class="glyphicon glyphicon-log-in"></span> Salir </a></li>
+    </ul>
+  </div>
+</nav>
+
+{% endblock %}
+
+{% block cuerpo %}
+
+{% if errores %}
+<div class="alert alert-danger">
+   {{ errores }}
+</div>
+{% endif %}
+  
+<form method="POST" action="/eliminarAdminServ/">
+  {% csrf_token %}
+  
+  <div class="login-box">
+    <!-- USERNAME INPUT -->
+    <label for="username">Ingresa ID:</label>
+    <input type="number" placeholder="Enter Username" name="usuarioID">
+   
+    <input type="submit" value="Eliminar">
+  </div>
+  
+</form>
+
+
+{% endblock %}
+{% block pie %} {{ block.super }} {% endblock %}
