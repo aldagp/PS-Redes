@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+   
+   serv2:
+     environment:
+       SECRET_KEY_SERV2: ${SECRET_KEY_SERV2}
+       DB_NAME_SERV2: ${DB_NAME_SERV2}
+       DB_USER_SERV2: ${DB_USER_SERV2}
+       DB_PASSWORD_SERV2: ${DB_PASSWORD_SERV2}
+       DB_HOST_SERV2: ${DB_HOST_SERV2}
+       DB_PORT_SERV2: ${DB_PORT_SERV2}
+     build: .
+     restart: always #posible mensaje keep alive
+     container_name: servicio_lanar
+     volumes:
+       - ./serv2:/code
+     depends_on:
+       - bdserv2
+
+   bdserv2:
+     image: mariadb
+     restart: always
+     environment:
+       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+       MYSQL_DATABASE: ${MYSQL_DATABASE}
+     volumes:
+       - ./data:/var/lib/mysql
+     ports:
+       - 3307:3306
+
+   nginx:
+     image: nginx
+     restart: always
+     volumes:
+       - ./config/nginx/conf.d:/etc/nginx/conf.d
+       - ./serv2/static:/static
+     depends_on:
+       - serv2
+     ports:
+       - 8003:80

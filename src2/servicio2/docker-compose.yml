@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+   
+   servicio2:
+     environment:
+       SECRET_KEY_SERV: ${SECRET_KEY_SERVICIO2}
+       DB_NAME_SERV: ${DB_NAME_SERVICIO2}
+       DB_USER_SERV: ${DB_USER_SERVICIO2}
+       DB_PASSWORD_SERV: ${DB_PASSWORD_SERVICIO2}
+       DB_HOST_SERV: ${DB_HOST_SERVICIO2}
+       DB_PORT_SERV: ${DB_PORT_SERVICIO2}
+     build: .
+     restart: always #posible mensaje keep alive
+     container_name: servicio2_segura
+     volumes:
+       - ./Servicio2:/code
+     depends_on:
+       - bdservicio2
+     deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: "250M"
+
+   bdservicio2:
+     image: mariadb
+     restart: always
+     environment:
+       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+       MYSQL_DATABASE: ${MYSQL_DATABASE}
+     volumes:
+       - ./data:/var/lib/mysql
+     ports:
+       - 3305:3308
+
+   nginx:
+     image: nginx
+     restart: always
+     volumes:
+       - ./config/nginx/conf.d:/etc/nginx/conf.d
+       - ./Servicio2/static:/static
+     depends_on:
+       - servicio2
+     ports:
+       - 8004:80
