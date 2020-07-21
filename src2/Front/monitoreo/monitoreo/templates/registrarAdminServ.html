@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Monitoreo de servidores{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+{% endblock %}
+
+{% block header %} 
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Registrar Administrador</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/funcionesAdminGlobal/">Regresar</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/logout/"><span class="glyphicon glyphicon-log-in"></span> Salir </a></li>
+    </ul>
+  </div>
+</nav>
+
+{% endblock %}
+
+{% block cuerpo %}
+
+{% if errores %}
+<div class="alert alert-danger">
+  <strong></strong> {{ errores }}
+</div>
+{% endif %}
+<div>
+  <h1 class="text-center">Ingresa los datos</h1>
+</div>
+<br>
+<br>
+<div class="container"> 
+
+<form class="form-horizontal" method="POST" action="/registrarAdminServ/">
+  {% csrf_token %}
+  
+  <div class="form-group">
+    <label class="control-label col-sm-1" for="username">Usuario</label>
+    <div class="col-sm-11">
+      <input type="texto" class="form-control" placeholder="Escribe tu Usuario" name="usuario">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-1" for="password">Contraseña:</label>
+    <div class="col-sm-11">          
+      <input type="password" class="form-control" placeholder="Escribe tu contraseña" name="password">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-1" for="password">Chat ID:</label>
+    <div class="col-sm-11">          
+      <input type="password" class="form-control" placeholder="Escribe tu chatID" name="chatID">
+      <input type="submit" value="Registrar">
+    </div>
+  </div>
+</div>
+  <!--
+  <div class="login-box">
+    <!-- USERNAME INPUT 
+    <label for="username">Usuario</label>
+    <input type="text" placeholder="Enter Username" name="usuario">
+    
+    <!-- PASSWORD INPUT 
+    <label for="password">Contraseña</label>
+    <input type="password" placeholder="Enter Password" name="password">
+
+    <label for="password">ChatID</label>
+    <input type="password" placeholder="Enter Chat ID" name="chatID">
+    <input type="submit" value="Registrar">
+  </div>
+-->
+  
+</form>
+
+
+{% endblock %}
+
+{% block pie %} {{ block.super }} {% endblock %}

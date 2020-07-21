@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Monitoreo de servidores{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+{% endblock %}
+
+{% block header %} 
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Funciones Administrador</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/registrarAdminServ/">Registrar Administrador</a></li>
+      <li class="active"><a href="/verServidor/"> Ver Servidores </a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/logout/"><span class="glyphicon glyphicon-log-in"></span> Salir </a></li>
+    </ul>
+  </div>
+</nav>
+{% endblock %}
+
+<div>
+	<h1 class="text-center">Funciones del administrador</h1>
+</div>
+
+{% load static %}
+
+{% block javascript %}
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+  <script src="{% static 'js/confirmacion.js' %}"></script>
+{% endblock %}
+
+{% if errores %}
+
+<div class="alert alert-danger">
+  <strong>ERROR</strong> {{ errores }}  
+</div>
+{% endif %}
+
+{% block cuerpo %}
+<section class="container">
+<table class="table table-bordered table-striped">
+  <h3>Administradores</h3>
+  <thead>
+      <tr>
+        <th>Usuario</th>
+        <th>Id</th>
+        <th>Opciones</th>
+      </tr>
+  </thead>
+<tbody id="myTable" style="background-color: white; color: black">
+      {% for u in misUsuarios %}
+      <tr>
+        <td>{{ u.usuario  }}</td>
+        <td>{{ u.id  }}</td>
+        <td>
+          <a href="{% url 'actualizarAdminServ' u.id %}">Modificar</a>
+          <a href="{% url 'eliminarAdminServ' u.id %}">Eliminar</a>
+          <!--<a href="#" onclick="confirmarEliminacion({{u.id}})">Eliminar</a>-->
+        </td>
+      </tr>
+      {% endfor %}
+    
+</tbody>      
+</table>
+</section>
+{% endblock %}
+
+{% block pie %} {{ block.super }} {% endblock %}

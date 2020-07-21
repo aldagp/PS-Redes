@@ -1,0 +1,74 @@
+
+{% extends 'base.html' %}
+
+{% block titulo %} Login {% endblock %}
+
+{% block head %}
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+{% endblock %}
+
+<br>
+{% block header %} 
+	<h1 class="text-center">Iniciar Sesion</h1>
+{% endblock %}
+
+<br>
+{% block nav %} 
+{% endblock %}
+
+<br>
+
+{% block cuerpo %}
+
+<br>
+<section>
+  <img src="/static/imagen/logo2.png" height="150px" width="150px">
+</section>
+
+<br>
+
+<div>
+  {% if errores %}
+  <div class="alert alert-danger">
+    <strong>ERROR</strong> {{ errores }}  
+  </div>
+  {% endif %}
+</div>
+
+<div class="container"> 
+
+  <form class="form-horizontal" method="post" action="/login/">
+    {% csrf_token %}
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="username">Usuario</label>
+      <div class="col-sm-10">
+        <input type="texto" class="form-control" placeholder="Escribe tu Usuario" name="usuario">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="password">Contraseña:</label>
+      <div class="col-sm-10">          
+        <input type="password" class="form-control" placeholder="Escribe tu contraseña" name="password">
+      </div>
+    </div>
+
+    <div class="form-group">        
+      <div class="col-sm-12">
+        <input type="submit" class="btn btn-default" value="Iniciar Sesion"></button>
+      </div>
+    </div>
+	</div>
+
+  </form>
+</div>
+{% endblock %}
+
+
+{% block pie %} {{ block.super }} {% endblock %}
+
+

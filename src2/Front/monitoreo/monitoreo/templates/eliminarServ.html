@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Monitoreo de servidores{% endblock %}
+
+{% block encabezado %}Eliminar usuario{% endblock %}
+
+{% block contenido %}
+
+{% if errores %}
+<div class="alert alert-danger">
+   {{ errores }}
+</div>
+{% endif %}
+  
+<form method="POST" action="/eliminarAdminServ/">
+  {% csrf_token %}
+  
+  <div class="login-box">
+    <!-- USERNAME INPUT -->
+    <label for="username">Ingresa ID:</label>
+    <input type="number" placeholder="Enter Username" name="usuarioID">
+   
+    <input type="submit" value="Eliminar">
+  </div>
+  
+</form>
+<a href="/logout/">
+  <button>Cerrar sesión</button>
+</a>
+<a href="/funcionesAdminGlobal/">
+  <button>Regresar</button>
+</a>
+
+{% endblock %}

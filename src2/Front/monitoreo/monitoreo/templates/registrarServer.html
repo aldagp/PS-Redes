@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Monitoreo de servidores{% endblock %}
+
+{% block encabezado %}Registrar servidor{% endblock %}
+
+{% block contenido %}
+
+{% if errores %}
+<div class="alert alert-danger">
+  <strong></strong> {{ errores }}
+</div>
+{% endif %}
+<!-- Metodo POST para que en la URL no se vea la informacion-->
+
+
+<form action="" method="POST">
+  {% csrf_token %}
+  
+  <div class="login-box">
+    {{ formServidor.as_table }}
+  </div>
+  <input type="submit" value="Guardar">
+</form>
+{{ mensaje }}
+
+
+<a href="/logout/">
+  <button>Cerrar sesión</button>
+</a>
+<a href="/verServidor/">
+  <button>Regresar</button>
+</a>
+
+{% endblock %}
